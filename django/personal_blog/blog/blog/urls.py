@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url
+from posts import views
+
+# for image rendering
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-]
+    url(r'^admin/', admin.site.urls),
+    url(r'^$', views.home),
+    url(r'^post/(?P<post_id>[0-9]+)/$', views.post_details, name='post_details') # use regex to pass var that is a digit
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

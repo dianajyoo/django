@@ -1,0 +1,10 @@
+<h1>Welcome to Diana's Blog!</h1>
+
+<h2>Latest Posts</h2>
+
+{% for post in posts.all %}
+<a href="{% url 'post_details' post.id %}">{{ post.title }}</a> <br />
+{{ post.prettify_pub_date }} <br />
+<img src="{{ post.image }}" alt="blog-image" /> <br />
+{{ post.summary }} <br />
+{% endfor %}
